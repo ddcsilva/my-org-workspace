@@ -1,1 +1,39 @@
 /* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+$my-org-blue-palette: (
+  50: #eff6ff,
+  100: #dbeafe,
+  200: #bfdbfe,
+  300: #93c5fd,
+  400: #60a5fa,
+  500: #3b82f6,
+  600: #4c73db,
+  700: #2852c8,
+  800: #2144a6,
+  900: #1d3c91,
+  contrast: (
+    50: #000,
+    100: #000,
+    200: #000,
+    300: #000,
+    400: #000,
+    500: #fff,
+    600: #fff,
+    700: #fff,
+    800: #fff,
+    900: #fff,
+  ),
+);
+
+$example-app-primary: mat.define-palette($my-org-blue-palette, 700, 600, 900);
+$example-app-accent: mat.define-palette(mat.$blue-palette, A400, A100, A700);
+$example-app-warn: mat.define-palette(mat.$red-palette);

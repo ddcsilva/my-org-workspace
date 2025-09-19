@@ -1,10 +1,15 @@
 // Tema customizado do Angular Material
 @use "@angular/material" as mat;
 
+// Tailwind CSS
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 // Estilos base do Material
 @include mat.core();
 
-// Paleta de cores customizada
+// Paleta de cores da organização
 $my-org-blue-palette: (
   50: #eff6ff,
   100: #dbeafe,
@@ -16,33 +21,15 @@ $my-org-blue-palette: (
   700: #2852c8,
   800: #2144a6,
   900: #1d3c91,
-  contrast: (
-    // Cores de texto para cada tonalidade de fundo
-    50: #000,
-    100: #000,
-    200: #000,
-    300: #000,
-    400: #000,
-    500: #fff,
-    600: #fff,
-    700: #fff,
-    800: #fff,
-    900: #fff,
-  ),
 );
 
-// Paletas do tema
-$example-app-primary: mat.define-palette($my-org-blue-palette, 700, 600, 900);
-$example-app-accent: mat.define-palette(mat.$blue-palette, A400, A100, A700);
-$example-app-warn: mat.define-palette(mat.$red-palette);
-
-// Tema principal
-$example-app-theme: mat.define-light-theme(
+// Configuração do tema Angular Material
+$example-app-theme: mat.define-theme(
   (
     color: (
-      primary: $example-app-primary,
-      accent: $example-app-accent,
-      warn: $example-app-warn,
+      theme-type: light,
+      primary: mat.$blue-palette,
+      tertiary: mat.$cyan-palette,
     ),
     density: (
       scale: 0,
@@ -50,9 +37,19 @@ $example-app-theme: mat.define-light-theme(
   )
 );
 
-// Aplicar tema a todos os componentes
+// Aplicação do tema com customizações da marca
 :root {
   @include mat.all-component-themes($example-app-theme);
+
+  // Customização das cores do sistema usando nossa paleta
+  --mat-sys-primary: #{map-get($my-org-blue-palette, 700)};
+  --mat-sys-on-primary: #ffffff;
+  --mat-sys-primary-container: #{map-get($my-org-blue-palette, 100)};
+  --mat-sys-on-primary-container: #{map-get($my-org-blue-palette, 900)};
+  --mat-sys-secondary: #{map-get($my-org-blue-palette, 400)};
+  --mat-sys-on-secondary: #ffffff;
+  --mat-sys-tertiary: #{map-get($my-org-blue-palette, 600)};
+  --mat-sys-on-tertiary: #ffffff;
 }
 
 // Estilos globais

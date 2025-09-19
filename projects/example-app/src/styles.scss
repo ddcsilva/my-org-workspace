@@ -1,1 +1,66 @@
-/* You can add global styles to this file, and also import other style files */
+// Tema customizado do Angular Material
+@use "@angular/material" as mat;
+
+// Estilos base do Material
+@include mat.core();
+
+// Paleta de cores customizada
+$my-org-blue-palette: (
+  50: #eff6ff,
+  100: #dbeafe,
+  200: #bfdbfe,
+  300: #93c5fd,
+  400: #60a5fa,
+  500: #3b82f6,
+  600: #4c73db,
+  700: #2852c8,
+  800: #2144a6,
+  900: #1d3c91,
+  contrast: (
+    // Cores de texto para cada tonalidade de fundo
+    50: #000,
+    100: #000,
+    200: #000,
+    300: #000,
+    400: #000,
+    500: #fff,
+    600: #fff,
+    700: #fff,
+    800: #fff,
+    900: #fff,
+  ),
+);
+
+// Paletas do tema
+$example-app-primary: mat.define-palette($my-org-blue-palette, 700, 600, 900);
+$example-app-accent: mat.define-palette(mat.$blue-palette, A400, A100, A700);
+$example-app-warn: mat.define-palette(mat.$red-palette);
+
+// Tema principal
+$example-app-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $example-app-primary,
+      accent: $example-app-accent,
+      warn: $example-app-warn,
+    ),
+    density: (
+      scale: 0,
+    ),
+  )
+);
+
+// Aplicar tema a todos os componentes
+:root {
+  @include mat.all-component-themes($example-app-theme);
+}
+
+// Estilos globais
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
